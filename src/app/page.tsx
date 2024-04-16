@@ -1,37 +1,94 @@
-import Link from "next/link";
+import Image from "next/image";
+import bgeIcon from "../../public/animated-fox-pixel.png";
+import { Linkedin, LucideGithub } from "lucide-react";
+import LogoLink from "./components/Logo/LogoLink";
+import { Button } from "@/components/ui/button";
+import { Article, ArticleCard } from "./components/ArticleCard/ArticleCard";
+
 
 export default function HomePage() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
+
+    const articles: Article[] = [
+        {
+            title: "Hello World",
+            publishedAt: "2021-09-09",
+            readTime: 5,
+            tags: ["hello", "world"],
+            image: "https://via.placeholder.com/150"
+        },
+        {
+            title: "Hello World",
+            publishedAt: "2021-09-09",
+            readTime: 5,
+            tags: ["hello", "world"],
+            image: "https://via.placeholder.com/150"
+        },
+        {
+            title: "Hello World",
+            publishedAt: "2021-09-09",
+            readTime: 5,
+            tags: ["hello", "world"],
+            image: "https://via.placeholder.com/150"
+        },
+        {
+            title: "Hello World",
+            publishedAt: "2021-09-09",
+            readTime: 5,
+            tags: ["hello", "world"],
+            image: "https://via.placeholder.com/150"
+        },
+        {
+            title: "Hello World",
+            publishedAt: "2021-09-09",
+            readTime: 5,
+            tags: ["hello", "world"],
+            image: "https://via.placeholder.com/150"
+        },
+        {
+            title: "Hello World",
+            publishedAt: "2021-09-09",
+            readTime: 5,
+            tags: ["hello", "world"],
+            image: "https://via.placeholder.com/150"
+        },
+        {
+            title: "Hello World",
+            publishedAt: "2021-09-09",
+            readTime: 5,
+            tags: ["hello", "world"],
+            image: "https://via.placeholder.com/150"
+        },
+        {
+            title: "Hello World",
+            publishedAt: "2021-09-09",
+            readTime: 5,
+            tags: ["hello", "world"],
+            image: "https://via.placeholder.com/150"
+        },
+    ]
+
+    return (
+        <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+        <div className="max-w-[80%] m-auto">
+            <section className="my-24">
+                <Image src={bgeIcon} alt="Logo" className="rounded-full w-40 text-center m-auto" />
+                <h1 className="text-4xl font-bold text-center">Hy Huynh</h1>
+                <p className="text-center">Unemployed Software Engineer</p>
+                <iframe className="m-auto" src="https://www.youtube.com/embed/e0BQWxOaljU?enablejsapi=1" width="560" height="315" title="YouTube video player" frameBorder="0" allowFullScreen />
+                <div className="flex justify-center">
+                    <LogoLink icon={<Linkedin size={32} />} link="https://www.linkedin.com/in/hoxirious/" />
+                    <LogoLink icon={<LucideGithub size={32} />} link="https://www.github.com/hoxirious" />
+                </div>
+            </section>
+            <section>
+                <h2 className="text-2xl font-bold">Recents</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {articles.map((article: Article, index: number) => (
+                        <ArticleCard key={index} article={article} />
+                    ))}
+                </div>
+            </section>
         </div>
-      </div>
-    </main>
-  );
+        </main>
+    );
 }
