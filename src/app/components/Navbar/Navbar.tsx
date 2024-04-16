@@ -1,12 +1,8 @@
-"use client"
-
 import Image from "next/image";
 import Link from "next/link";
-import { CirclePlus, Search } from "lucide-react";
-import NavBarButton from "./components/NavbarButton";
+import { Linkedin, LucideGithub } from "lucide-react";
 import bgeIcon from "public/animated-fox-pixel.png";
 import "./Navbar.scss";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import NavbarItem from "./components/NavbarItem";
 
 const NavBar = () => {
@@ -36,10 +32,19 @@ const NavBar = () => {
                 icon: <NavbarItem text="About" />,
                 link: "/about",
             },
+            {
+                icon: <Linkedin size={20} className="mx-2  hover:text-secondary" />,
+                link: "https://www.linkedin.com/in/hoxiridiwous/"
+            },
+            {
+                icon: <LucideGithub size={20} className="mx-2 hover:text-secondary" />,
+                link: "https://www.github.com/hoxirious/"
+            }
+
         ],
     }
 
-    let navBarVariant = homeNavBarList;
+    const navBarVariant = homeNavBarList;
 
 
     return (
