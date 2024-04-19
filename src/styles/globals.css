@@ -149,8 +149,7 @@
 
     .footer {
         background-image: url('../../public/backyard.gif');
-        @apply bg-cover w-full py-8;
+        @apply bg-cover w-full py-2;
         background-position: bottom;
     }
-
 }

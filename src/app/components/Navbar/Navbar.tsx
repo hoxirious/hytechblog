@@ -13,11 +13,7 @@ const NavBar = () => {
     } = {
         left: [
             {
-                icon: <Image src={bgeIcon} alt="Logo" className="navbar-logo" />,
-                link: "/",
-            },
-            {
-                icon: <NavbarItem text="Hy Huynh" />,
+                icon: <NavbarItem text="hy" className="text-[#E6681D] text-xl font-bold italic underline"/>,
                 link: "/",
             }
         ],
@@ -30,7 +26,7 @@ const NavBar = () => {
             },
             {
                 icon: <NavbarItem text="About" />,
-                link: "/about",
+                link: "/posts/about",
             },
             {
                 icon: <Linkedin size={20} className="mx-2 text-primary-foreground hover:text-primary" />,

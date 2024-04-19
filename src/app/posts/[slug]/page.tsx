@@ -22,14 +22,14 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
     return (
         <div className="cover w-full h-screen cover">
             <div className="grid grid-cols-1 h-full px-12 gap-4 md:grid-cols-5 ">
-                <article className="mx-auto py-8 min-h-3/4 w-full col-span-4 flex flex-col">
+                <article className="mx-auto py-8 min-h-3/4 w-4/5 col-span-4 flex flex-col">
                     <div className="mb-8 text-center">
                         <time dateTime={post.date} className="mb-1 text-xs text-gray-600">
                             {format(parseISO(post.date), 'LLLL d, yyyy')}
                         </time>
                         <h1 className="text-3xl font-bold">{post.title}</h1>
                     </div>
-                    <div className="h-full bg-white bg-opacity-80 rounded-lg p-4" dangerouslySetInnerHTML={{ __html: post.body.html }} />
+                    <div className="max-w-full prose dark:prose-invert h-[32rem] bg-white bg-opacity-80 rounded-lg p-12 overflow-y-auto" dangerouslySetInnerHTML={{ __html: post.body.html }} />
                 </article>
                 <aside className="mt-32 w-full h-fit pt-8 pb-12 col-span-1 bg-primary/[0.8] rounded-lg p-4">
                     <h2 className="text-xl font-bold text-white mx-auto">Recent Posts</h2>
