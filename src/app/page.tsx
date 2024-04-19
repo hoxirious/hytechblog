@@ -48,7 +48,7 @@ export default function HomePage() {
                     <h2 className="text-2xl font-bold">Recents</h2>
                     <div className="grid mt-4 grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {posts.map((article: Post, index: number) => (
-                            <Link href={article.url} >
+                            <Link href={article.url} key={index} >
                                 <ArticleCard key={index} article={article} />
                             </Link>
                         ))}
