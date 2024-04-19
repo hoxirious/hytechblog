@@ -18,7 +18,7 @@ const NavBar = () => {
             },
             {
                 icon: <NavbarItem text="Hy Huynh" />,
-                link: "/home",
+                link: "/",
             }
         ],
         middle: [],
@@ -26,7 +26,7 @@ const NavBar = () => {
 
             {
                 icon: <NavbarItem text="Articles" />,
-                link: "/articles",
+                link: "/posts",
             },
             {
                 icon: <NavbarItem text="About" />,
@@ -34,7 +34,7 @@ const NavBar = () => {
             },
             {
                 icon: <Linkedin size={20} className="mx-2 text-primary-foreground hover:text-primary" />,
-                link: "https://www.linkedin.com/in/hoxiridiwous/"
+                link: "https://www.linkedin.com/in/hy-h-40983b1b6"
             },
             {
                 icon: <LucideGithub size={20} className="mx-2 text-primary-foreground hover:text-primary" />,
