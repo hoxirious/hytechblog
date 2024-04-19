@@ -8,13 +8,15 @@ tags:
     - proxy
 ---
 
-# Collaborative Markdown Editor
+# Unveiling Our Collaborative Markdown Editor
 
-### Instructor
+Welcome to an inside look at our latest project under the guidance of Dr. Jalal Kawash at the University of Calgary. This post outlines our journey in developing a real-time, collaborative Markdown editor designed to revolutionize how we handle documentation in diverse tech environments.
+
+## Instructor
 
 - Dr. Jalal Kawash
 
-### Contributors
+## Contributors
 
 - Harsh Sharma
 - Viet An Truong
@@ -22,162 +24,58 @@ tags:
 - Hy Huynh
 - Tran Dang Khoa Nguyen
 
-
-
-[Github Repository](https://github.com/Harsh-S7/cpsc559Project)
+[View our GitHub Repository](https://github.com/Harsh-S7/cpsc559Project)
 
 ## Abstract
 
-The Collaborative Markdown Editor project, undertaken by Group 10 at the University of Calgary under Dr. Jalal Kawash, addresses the challenge of enhancing collaboration across diverse technological environments. By focusing on Markdown, a format known for its simplicity and accessibility, this project aims to create a web application that allows multiple users to collaboratively edit Markdown documents in real-time, irrespective of their technical expertise or the devices they use. The application emphasizes features such as live editing and preview, robust access control, and a commitment to security and data integrity. Leveraging a multi-layered architecture and a selection of modern technologies including React, Node.js, TypeScript, and MongoDB, the project successfully delivers a scalable, efficient, and user-friendly platform for collaborative document editing. It also explores communication protocols, synchronization strategies using the Bully Algorithm, replication for fault tolerance, and consistency mechanisms through CRDTs and Lamport timestamps, offering insights into the complexity of developing distributed systems. Despite facing challenges such as system rigidity, single points of failure, and manual recovery processes, the project highlights significant learnings in architecture decision-making and the practical application of theoretical concepts. This endeavor not only advances the collaborative capabilities of digital platforms but also sets the stage for future improvements in distributed system design and real-time collaboration tools.
+Our project, initiated by Group 10, tackles the substantial challenge of enhancing real-time collaborative efforts in document editing across different technological setups. By leveraging Markdown's simplicity and wide accessibility, we aimed to create a web application that supports seamless collaboration without the barriers often imposed by varying levels of technical expertise or device constraints.
 
-## 1.  Introduction
+## Introduction
 
-In today's digital age, mainstream collaboration platforms support an array of complex file formats. While these formats offer high levels of versatility and customization, they often fall short in terms of portability and readability across diverse devices and software environments. This shortfall can obstruct smooth collaboration across varied technical landscapes.
+In the realm of digital collaboration, most platforms support complex file formats that, while feature-rich, often compromise on portability and ease of use across different devices. Recognizing this gap, we turned to Markdown—a straightforward format known for its accessibility and simplicity.
 
-To counteract this challenge, our project is set to introduce a universally accessible file format solution. By pivoting towards Markdown, a format celebrated for its simplicity and user-friendliness, we are dedicated to enhancing collaborative efforts. Our initiative is geared towards making collaboration more straightforward and inclusive, allowing a wider audience to engage effortlessly, even those with limited exposure to specialized software. Our ultimate aspiration is to foster an inclusive, efficient, and user-friendly collaborative ecosystem that emphasizes speed and simplicity.
+Our goal was to develop a web application that not only supports real-time collaborative editing but also democratizes the editing process, making it accessible to everyone, regardless of their technical background. This application allows multiple users to edit the same document simultaneously, with changes reflected in real-time, enhancing communication and streamlining the collaborative process.
 
-Our innovative web application, a collaborative Markdown editor, is designed to facilitate multiple users in jointly creating and editing Markdown documents in a remote setup. This application is poised to revolutionize the way we approach collaborative writing and editing by offering real-time visibility of modifications, thereby enabling effective communication and immediate feedback.
+## Core Features
 
-Our web application boasts several core features designed to enhance collaboration and streamline document editing. One of its key functionalities is real-time collaboration, which facilitates seamless teamwork across distances by allowing users to simultaneously work on a single Markdown document and observe live changes made by their peers. Complementing this, the live preview feature offers users the ability to view their edits in formatted form in real-time, ensuring consistency and aesthetic appeal throughout the editing process. Moreover, our application prioritizes security and integrity with robust access control options, empowering users to specify or revoke editing permissions for their Markdown documents as needed. This feature is pivotal in safeguarding the content and maintaining its confidentiality. Together, these features make our web application a valuable tool for efficient and collaborative document editing.
+Our collaborative Markdown editor introduces several key features:
+- **Real-time collaboration**: Allows multiple users to edit documents simultaneously and see each other's changes instantly.
+- **Live preview**: Users can view a rendered version of the Markdown content as they type, ensuring that the document's format is preserved.
+- **Robust access control**: Users can define who can view or edit documents, enhancing security and integrity.
 
-## 2. Architecture
+## Architecture
 
-Figure 2 in the documentation illustrates the multi-layered architecture of our application, each layer meticulously tailored to fulfill a specific role in the overall functionality and user experience. Let’s delve into the detailed workings of each layer.
+The application is built on a multi-layered architecture:
+- **Front-end**: Developed with React and JSX, providing a responsive and dynamic user interface.
+- **Proxy layer**: Implemented with TypeScript, it serves as an intermediary that enhances security and manages communication between the client and server.
+- **Server layer**: Utilizes Node.js and TypeScript to handle business logic, with distinct components for user management and real-time document editing.
+- **Database**: MongoDB is used for its flexibility in handling large volumes of unstructured data, essential for a scalable, modern web application.
 
-The initial layer is the client-facing front-end, which is more than a mere user interface. Crafted with React and JSX, it leverages the power of React's virtual DOM to deliver a highly responsive and interactive experience. The front-end is broken down into discrete components, facilitating not just rapid rendering but also efficient state management and reusability, key aspects of modern, scalable web applications.
+Each layer is designed to optimize performance and user experience, ensuring that the application can handle the dynamic and collaborative nature of real-time editing.
 
-The second layer in our architecture is the proxy. Implemented with TypeScript, this intermediary is critical for several reasons. Firstly, it abstracts the complexity of server-side operations from the client, ensuring that from the client’s perspective, the system's inner workings remain transparent. This layer provides an essential buffer, improving security by preventing direct access to the server layer, and also acts as a control point for load balancing and caching, further enhancing the system's efficiency and reliability.
+## Technology Stack
 
-Transitioning to the third layer, we encounter the backbone of our server-side logic: the Server layer, which consists of two main components, the User Server and the Editor Server. Both are co-located on the same hardware to minimize latency and are constructed using a combination of Node.js and TypeScript. The User Server is the nexus of our API endpoints, handling a comprehensive array of user-related functions, from authentication processes like login and logout to document management operations, including viewing, sharing, and editing markdown documents.
+- **React & JSX**: For a dynamic and responsive front-end.
+- **Node.js & TypeScript**: For server-side logic, offering scalability and performance.
+- **MongoDB**: Chosen for its NoSQL approach, allowing flexible, scalable database solutions.
 
-The Editor Server is particularly specialized; it is a WebSocket server, devised to facilitate real-time, collaborative editing of documents. This component is engineered to support concurrent user edits without conflict, employing a modular design that not only ensures operational stability but also provides the flexibility needed for future enhancements and feature integrations.
+## Communication and Synchronization
 
-The fourth and final layer is the Database layer, where MongoDB is implemented. As a NoSQL database, MongoDB is adept at handling large volumes of unstructured data, a common requirement for modern web applications. It stores information in a flexible, JSON-like format, allowing for agile development and easy scalability. The choice of MongoDB reflects our commitment to leveraging technology that aligns with the application's data requirements, facilitating efficient queries and updates while also enabling scalability as the user base grows.
+We implemented REST API for standard server-client communications and WebSocket for real-time, bidirectional interactions. For maintaining consistency across all clients, we utilized techniques like CRDTs (Conflict-Free Replicated Data Types) and Lamport timestamps, which help in managing the sequence of operations without central coordination.
 
-Moreover, in an effort to maintain a consistent state across all instances of the application, as depicted in Figure 2, replication and synchronization mechanisms are employed. These ensure that every interaction with the User and Editor Servers—whether it be a user logging in, a document being edited, or a new user registering—is accurately reflected across all servers in real time. This consistency is vital, not just for user trust and experience but also for the integrity of the data within our system.
+## Challenges and Learnings
 
-In summary, the architecture is thoughtfully designed to handle the dynamic and collaborative nature of our application, prioritizing both performance and user satisfaction. Each layer is optimized for its role, from rendering the interface to processing data, ensuring a seamless and efficient operation of the full stack.
+Throughout this project, we faced several challenges:
+- **Scalability**: Managing large numbers of users and documents while maintaining performance.
+- **Consistency**: Ensuring data consistency across distributed systems was crucial and challenging.
+- **User Experience**: Balancing complexity and usability to cater to both technical and non-technical users.
 
+From these challenges, we learned valuable lessons in distributed system design, real-time data synchronization, and creating user-centric applications that are both robust and easy to use.
 
-Figure 2: High-level Architect
+## Conclusion
 
-## 3. Technology Stack
+This project not only enhanced our understanding of real-time collaborative systems but also set a new standard for document editing tools. We are excited about its potential to improve productivity and collaboration across various sectors.
 
-The choice of technologies for each layer of our application was carefully considered to ensure optimal performance, scalability, and maintainability.
+We believe this technology can be the cornerstone of future advancements in collaborative software. Thank you for following our journey, and we hope our project inspires further innovation in this space.
 
-For the front-end layer, React with JSX was chosen due to its component-based architecture and the advantages of the virtual DOM. React's component-based approach allows us to create reusable UI elements, resulting in a more modular and maintainable codebase. The virtual DOM enables efficient updates to the UI, improving the overall performance of our application, especially in complex and dynamic user interfaces.
-
-In the second layer, TypeScript was selected for building the Proxy. TypeScript provides static typing capabilities, which helps catch errors during development and enhances code quality. Additionally, TypeScript's support for modern JavaScript features allows for cleaner and more maintainable code. The Proxy layer was added to introduce an abstraction between the client and server, enhancing transparency and improving the overall architecture of our application.
-
-Moving on to the Server layer, Node.js was chosen for its non-blocking I/O model, which makes it well-suited for building scalable and high-performance server-side applications. Combined with TypeScript, Node.js enables us to write server-side code using a familiar and expressive syntax while leveraging the benefits of static typing. Hosting both the User Server and Editor Server on the same machine simplifies deployment and management, while also ensuring efficient communication between the two components. The servers once deployed locally with localhost will then be tunnel forwarding using Localtunnel (open source tool) that allows the machines to expose the local port to the internet, allowing anyone to access the Editor and User server endpoints.
-
-For the database layer, MongoDB was selected as a document-oriented NoSQL database. MongoDB's flexible document model allows us to store and retrieve data in a format that closely aligns with the structure of our application's data. This flexibility makes it easier to adapt to changing requirements and iterate on our application's features. Additionally, MongoDB's scalability and distributed architecture support ensure that our application can handle increasing volumes of user data and document storage while maintaining high availability and fault tolerance.
-
-Overall, the combination of these technologies provides a solid foundation for building a robust, scalable, and maintainable application that meets the needs of our users.
-
-## 4. Communication
-
-There are two types of communications: REST API and Websocket. We implemented both on every layer of communications such as Client-Proxy, Proxy-Servers, Server-Servers. Each of the protocols serves its own purposes. REST API solely focuses on passive communication, meaning the receiver awaits for the request from the senders to proceed the according action. Whereas, Websocket offers bidirectional communication channels over a single TCP connection, making them ideal for real-time interaction. Understanding the basics of the protocols, we leveraged each of them to fit in layer communication of our architecture. For example, we implemented WebSocket communication for Client and Editor Server, we only do the initial handshake and onward any updates will be sent to the server to process. Examples for REST API could be found on Client and User Server communication. Say, if the client wants to retrieve the list of documents, it will send a GET request to the designated endpoint on the server. Beside the GET method, we also introduced the POST method for any update request.
-Disclaimer: Client and Server were not communicated directly in the actual implementation. All the communications must be forwarded by the proxy to ensure transparency and security.
-
-
-
-
-
-
-The figures below showcase the generalized communications across layers of our architecture:
-
-Figure 4.1. Client - Proxy Communication
-
-
-Figure 4.2. Proxy - User Server Communication
-
-
-Figure 4.3. Proxy - Editor Server Communication
-
-
-Figure 4.4. Primary Server  - Replica Servers Communication
-
-
-
-
-## 5. Synchronization
-
-For Synchronization, we use Leader Election with Bully Algorithm. When the application is initialized, all servers will host the election and choose one of them to be the leader. Bully algorithm ensures that the server with the highest port number will become the leader as shown in Figure 5. The leader will then send a “coordinate” message to all other servers to inform them of its leadership. The leader has the responsibility of communicating with the proxy and sending updates to the replicas.
-
-The leader and replicas communicate with each other within an interval. If the replica server doesn’t receive any response within a specified timeout period, it will assume the leader must have failed or disconnected and host another election.
-
-The bully algorithm is relatively simple to implement since it is based on a straightforward message-passing mechanism and doesn’t require complex data structures or computations. The algorithm is designed to handle server failures and network partitions effectively. However, the algorithm can only work effectively in a small network system as it can incur a significant message overhead during the leader election processes.
-
-
-Figure 5: Bully Algorithm
-
-
-## 6. Replication
-
-Replications are introduced to provide availability and fault tolerance. Each replication unit consists of an User Server, an Editor Server and Database instance. The Editor Server is also acting as a Replica Manager to communicate with other replicas and updating the Proxy. We choose to use replication to improve availability, whereas if the Primary Replica failed, we have 2 or more exact copies that continue to provide service so that the client’s without notice an interruption. The number of replicas can increase when the system scales.
-
-We decided to use Passive Replication architecture where the Primary Replica will be communicating with the Proxy. Primary Replica will then multicast the request to all replicas when it receives an update from the Proxy. The Proxy also provides transparency to replication, so that the client is unaware of the replication.
-
-To find/elect a primary server, a Replica Manager will initiate an election using Bully Algorithm when it first joins the communication channel, or after detecting that the primary replica has failed due to heartbeat misses. After an election, the primary replica will update to the Proxy its id, letting the Proxy know that it is the main replica. At last, each Replication Manager can be queried to find out if it is the primary replication so that other service, such as User Server, knows if it’s the primary replica.
-
-A key component in our replication strategy involves the utilization of Localtunnel, a tool that allows us to expose local servers to the internet by creating a tunnel from a public endpoint to a local service port. This capability is particularly crucial in our replication architecture, enabling seamless interaction between replicated servers, each running on different machines, and the central proxy server.
-
-The use of Localtunnel facilitates the demonstration and testing of our application’s replication mechanisms under conditions that closely mimic a distributed environment over the internet. By assigning unique public URLs to each replicated server instance (User Server, Editor Server, and Database), Localtunnel allows external access to these services, mimicking a real-world scenario where each replication unit might be hosted on different cloud servers or data centers.
-
-## 7. Consistency
-
-In collaborative applications, ensuring data consistency across all clients, despite network latency or disconnections, is paramount. Conflict-free Replicated Data Types (CRDTs) are designed to handle this challenge gracefully. CRDTs allow multiple users to work on shared data concurrently without the need for immediate synchronization with a central server. When synchronization occurs, CRDTs ensure that all copies converge to the same state, even if changes were made offline or in conflicting manners.
-
-CRDT operates by encapsulating each user’s changes in operations that are time stamped and distributed to all clients. These operations contain the necessary information to independently update each client's local copy of the document. A significant advantage of CRDTs is their inherent ability to resolve conflicts without central oversight. Each operation includes a unique identifier and metadata that YJS uses to integrate changes from different users in a deterministic manner, ensuring that every client arrives at the same final document state, regardless of the order in which changes were applied.
-
-To maintain the integrity and consistency of collaborative edits, it's crucial to establish a logical sequence for applying operations, especially in distributed systems where message delivery order cannot be guaranteed.  YJS employs Lamport timestamps to achieve causal ordering of operations. Lamport timestamp is a simple mechanism for establishing a partial ordering of events in a distributed system, enabling the system to deduce the causal relationships between events.
-
-When a user performs an action, such as inserting or deleting text, YJS assigns a Lamport timestamp to the operation. This timestamp reflects not just a numerical value indicating the operation's sequence but also encodes information about the operation's context, including its origin. As operations are received by clients, YJS examines their Lamport timestamps to determine the correct order in which they should be applied to the local document replica. This mechanism is critical for preserving the logical flow of document edits and ensuring that all users see a consistent and accurate representation of the document, even in the presence of network delays or disruptions.
-
-With YJS’ CRDT data structures and Lamport timestamp for causal ordering, Strict Consistency ensures that operations appear to be executed atomically and in a linear order, allowing users to perceive the system as behaving predictably and correctly, regardless of its distributed nature. Strict Consistency is essential in systems where data integrity and correctness are critical requirements, such as our collaborative markdown editor system. However, achieving it typically comes with the trade-offs in terms of performance, availability, and fault tolerance.
-
-## 8. Fault Tolerance
-
-In the architecture of our distributed real-time markdown editor system, fault tolerance is a cornerstone, designed to ensure high availability and resilience against server failures. Our system incorporates a robust server setup that includes one main server and multiple backup servers. This configuration employs the bully algorithm, a leader election technique that guarantees only the most suitable server - the one with the highest identifier - takes over as the main server in the event of a failure. This approach not only enhances the system’s ability to handle unexpected crashes but also ensures that there is minimal disruption to the service as well as the user. Each server in this network also operates its own database, allowing for distributed data management and redundancy.
-
-As mentioned earlier, we also employ a strict consistency model to maintain the integrity of data across all servers. Thanks to this model, the system can prevent issues such as data conflicts or stale data, which are common in distributed environments. This level of consistency is critical for real-time collaborative applications, as it guarantees that all users are working with the most current version of a document, regardless of the server they are connected to. In the event of a server crash, the system is designed for seamless recovery, with backup servers ready to take over immediately with all the latest data and changes, ensuring continuous operation without data loss or significant downtime.
-
-Moreover, our system leverages Yjs, a framework designed for building collaborative applications that require real-time synchronization of shared data. More importantly, Yjs incorporates a unique feature where it stores a local copy of the document on the user’s device. This not only enhances the system’s fault tolerance by providing an additional layer of data redundancy but also ensures that users can continue to work on the documents even during temporary network disruptions or server outages. By combining the robust server architecture with the capabilities of Yjs, our application offers a great level of fault tolerance, ensuring high availability and reliability for the users.
-
-## 9. Limitations
-
-Our application, while robust in many respects, does encounter certain limitations that warrant attention for future development and improvement.
-
-One significant limitation is the requirement for all servers within the system to be aware of each other's addresses. This aspect introduces a level of rigidity to the architecture, as it lacks dynamic discovery capabilities in our replication system. Dynamic discovery would allow servers to automatically identify and integrate with new replicas or servers entering the network, thereby enhancing scalability and flexibility. The absence of this feature means that any change in the server landscape necessitates a manual update of server addresses across the system. This manual intervention can lead to potential delays and errors in maintaining an up-to-date network configuration, ultimately impacting the efficiency and reliability of the application.
-
-Furthermore, our system's architecture reveals a critical vulnerability in the form of a single point of failure associated with the proxy server. If the proxy were to experience a crash or become unavailable for any reason, the communication channel between the client and the server would be effectively severed. This dependency on a single proxy for mediating all client-server interactions poses a considerable risk to the application's overall reliability and availability. In such an event, users would be unable to access or collaborate on documents, leading to disruptions in productivity and potential data loss. Addressing this single point of failure by introducing redundancy or a failover mechanism for the proxy could significantly bolster the system's resilience.
-
-Another area of concern is the lack of an automated solution for handling database corruption. While manual tests on MongoDB have demonstrated the feasibility of recovering the previous state from binary files generated by the database, this approach requires manual intervention and thus is not scalable or timely in a real-world scenario. An automated recovery solution would provide a much-needed safety net, ensuring that data integrity and availability are maintained even in the face of unexpected database issues. This would minimize downtime and data loss, crucial for a collaborative application where data consistency and availability are paramount.
-
-Lastly, the reliance on Localtunnel for port forwarding presents a limitation due to its inherent instability. The use of Localtunnel facilitates remote access to the application by forwarding the localhost to the internet. However, this service experiences frequent disconnects, typically after 30 minutes of connection time, due to Localtunnel's connection time limits. This instability can disrupt ongoing collaborations, forcing users to re-establish connections frequently. Such disruptions not only hamper user experience but also challenge the application's suitability for sustained, real-time collaborative work.
-
-Addressing these limitations requires a multi-faceted approach, focusing on enhancing system flexibility, reliability, and user experience. Implementing dynamic server discovery, introducing redundancy for the proxy, developing automated database recovery mechanisms, and exploring more stable alternatives to Localtunnel could collectively elevate the application's robustness and effectiveness as a collaborative tool.
-
-10. Learnings
-
-Throughout the course of this project, our team has gained significant insights and acquired a deep understanding of the complexities involved in developing distributed systems, particularly those designed for real-time collaboration. One of the primary lessons learned was the intricacies of translating theoretical communication algorithms, such as the bully algorithm, into practical, functioning software components within an HTTP server environment. This process challenged us to bridge the gap between abstract algorithmic concepts and their real-world application, requiring a nuanced understanding of both the theoretical underpinnings and the practical constraints of networked communication.
-
-Making informed architecture decisions emerged as another crucial learning point. Our project demanded a careful consideration of various architectural designs, specifically in the realms of replication architectures and consistency models, to meet our unique project requirements. This experience underscored the importance of aligning system architecture with the application's objectives and the users' needs, a task that involves balancing performance, scalability, and ease of use. Through this, we cultivated a deeper appreciation for the architectural choices behind similar applications in the market, recognizing the sophistication and thoughtfulness required to build systems that are both robust and user-friendly.
-
-Furthermore, our project served as an invaluable lesson in the critical role of fault tolerance in distributed systems. Designing software that maintains failure transparency taught us the importance of ensuring that the system remains operational and accessible even in the face of individual component failures. This aspect of our learning journey highlighted the necessity of anticipating and planning for potential points of failure, an understanding that will undoubtedly influence our approach to future projects.
-
-Additionally, confronting and navigating the challenges and limitations inherent in designing distributed systems provided us with a realistic perspective on the complexities of developing real-time collaborative applications. Through this process, we learned to appreciate the delicate balance between theoretical idealism and practical feasibility, particularly in an environment where user expectations and technological capabilities are constantly evolving.
-
-## 11. Summary and Conclusions
-
-In conclusion, the development and implementation of our collaborative Markdown editor represent a significant advancement in facilitating seamless, efficient, and inclusive collaboration across diverse technical landscapes. By harnessing the simplicity of Markdown and leveraging a robust multi-layered architecture, our application addresses the critical need for a universally accessible platform that enhances real-time collaborative efforts.
-
-Throughout the project, we meticulously selected and integrated cutting-edge technologies and protocols to ensure optimal performance, scalability, and user experience. From employing React with JSX for a dynamic front-end to adopting MongoDB for flexible and scalable database management, each choice was geared towards creating a resilient and user-friendly environment. Our application's architecture, with its emphasis on real-time collaboration, security, and integrity, sets a new standard for collaborative platforms.
-
-However, as with any ambitious project, we encountered limitations and challenges that provide valuable lessons and pathways for future improvement. The necessity for manual configuration in our replication system, the single point of failure presented by the proxy server, and the absence of automated solutions for database recovery and the instability of Localtunnel are areas that require attention. Addressing these limitations will be crucial for enhancing the application's reliability, scalability, and overall user experience.
-
-Moving forward, the exploration of dynamic server discovery, the introduction of redundancy and failover mechanisms for the proxy, and the development of automated recovery solutions will be pivotal in overcoming the current limitations. Additionally, seeking stable alternatives to Localtunnel will further bolster the application's performance and user satisfaction.
-
-In essence, our project stands as a testament to the potential of collaborative platforms to transcend traditional barriers, fostering a more connected, productive, and inclusive digital workspace. With continued development and refinement, we are confident that our collaborative Markdown editor will play a pivotal role in shaping the future of digital collaboration, empowering users across the globe to create, share, and innovate together.
 

@@ -1,7 +1,7 @@
 export default function HelloWorld() {
     return (
-        <div>
-            <h1>Hello World</h1>
+        <div className="">
+            <h1>Please hire me</h1>
         </div>
     );
 }

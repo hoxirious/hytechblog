@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Linkedin, LucideGithub } from "lucide-react";
-import bgeIcon from "public/animated-fox-pixel.png";
+import { FileText, Linkedin, LucideGithub } from "lucide-react";
 import "./Navbar.scss";
 import NavbarItem from "./components/NavbarItem";
 
@@ -13,7 +11,7 @@ const NavBar = () => {
     } = {
         left: [
             {
-                icon: <NavbarItem text="hy" className="text-[#E6681D] text-xl font-bold italic underline"/>,
+                icon: <NavbarItem text="hy" className="text-[#E6681D] text-xl font-bold italic underline" />,
                 link: "/",
             }
         ],
@@ -35,8 +33,7 @@ const NavBar = () => {
             {
                 icon: <LucideGithub size={20} className="mx-2 text-primary-foreground hover:text-primary" />,
                 link: "https://www.github.com/hoxirious/"
-            }
-
+            },
         ],
     }
 
@@ -62,10 +59,11 @@ const NavBar = () => {
                 </div>
                 <div className="navbar-item navbar-right">
                     {navBarVariant.right.map((item, index) => (
-                        <Link key={index} href={item.link}>
+                        <Link key={index} href={item.link} download="cv">
                             {item.icon}
                         </Link>
                     ))}
+                    <a href="/Hy_Huynh_Resume.pdf" download="Hy_Huynh_Resume" title="Resume"> <FileText size={20} className="mx-2 text-primary-foreground hover:text-primary" /></a>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import foxIcon from "../../public/animated-fox-pixel.png";
-import { Linkedin, LucideGithub } from "lucide-react";
+import { Linkedin, LucideGithub, FileText } from "lucide-react";
 import LogoLink from "./components/Logo/LogoLink";
 import { Button } from "@/components/ui/button";
 import { ArticleCard } from "./components/ArticleCard/ArticleCard";
@@ -21,12 +21,13 @@ export default function HomePage() {
                         <Image src={foxIcon} alt="Logo" className="rounded-full w-40 text-center m-auto" />
                         <h1 className="text-4xl font-bold text-center">Hy Huynh</h1>
                         <div className="text-center">
-                            <a href="https://dictionary.cambridge.org/dictionary/english/unemployed" className="text-sm inline underline text-gray-300 hover:text-gray-100">[Unemployed]</a>
+                            <a href="/hireme" className="text-sm inline underline text-gray-300 hover:text-gray-100">[Unemployed]</a>
                             <p className="bg-[#1F3F57]/[0.7] inline pr-1 mx-1"> Software Engineer</p>
                         </div>
                         <div className="flex justify-center">
                             <LogoLink icon={<Linkedin size={32} />} link="https://www.linkedin.com/in/hy-h-40983b1b6/" />
                             <LogoLink icon={<LucideGithub size={32} />} link="https://www.github.com/hoxirious" />
+                            <a href="/Hy_Huynh_Resume.pdf" download="Hy_Huynh_Resume" title="Resume"> <FileText size={32} className="m-2 text-primary-foreground hover:text-primary" /></a>
                         </div>
                     </div>
                     <iframe className="m-auto rounded-lg" src="https://www.youtube.com/embed/e0BQWxOaljU?enablejsapi=1" width="560" height="315" title="Hack The Change 2021 Demo" frameBorder="0" allowFullScreen />
