@@ -5,7 +5,7 @@ export const generateStaticParams = async () => allPosts.map((post) => ({ slug: 
 
 export const generateMetadata = ({ params }: { params: { slug: string } }) => {
     const post = allPosts.find((post) => {
-        return post._raw.flattenedPath === `posts/${params.slug}`
+        return post._raw.flattenedPath === `${params.slug}`
 
     })
     if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
@@ -14,7 +14,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
 
 const PostLayout = ({ params }: { params: { slug: string } }) => {
     const post = allPosts.find((post) => {
-        return post._raw.flattenedPath === `posts/${params.slug}`
+        return post._raw.flattenedPath === `${params.slug}`
 
     })
     if (!post) throw new Error(`Post not found for slug: ${params.slug}`)

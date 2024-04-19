@@ -33,7 +33,7 @@ export default function RootLayout({
                             <LogoLink icon={<Linkedin size={32} />} link="https://www.linkedin.com/in/hy-h-40983b1b6/" />
                             <LogoLink icon={<LucideGithub size={32} />} link="https://www.github.com/hoxirious" />
                         </div>
-                        <div className="ml-auto text-white">
+                        <div className="ml-auto text-white my-auto">
                             <span className="text-sm">@2024 Hy Huynh</span>
                         </div>
                     </div>
