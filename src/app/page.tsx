@@ -20,10 +20,10 @@ export default function HomePage() {
                     <div className="mb-12">
                         <Image src={foxIcon} alt="Logo" className="rounded-full w-40 text-center m-auto" />
                         <h1 className="text-4xl font-bold text-center">Hy Huynh</h1>
-                        <p className="text-center">
+                        <div className="text-center">
                             <a href="https://dictionary.cambridge.org/dictionary/english/unemployed" className="text-sm inline underline text-gray-300 hover:text-gray-100">[Unemployed]</a>
                             <p className="bg-[#1F3F57]/[0.7] inline pr-1 mx-1"> Software Engineer</p>
-                        </p>
+                        </div>
                         <div className="flex justify-center">
                             <LogoLink icon={<Linkedin size={32} />} link="https://www.linkedin.com/in/hy-h-40983b1b6/" />
                             <LogoLink icon={<LucideGithub size={32} />} link="https://www.github.com/hoxirious" />
