@@ -3,8 +3,28 @@
  * for Docker builds.
  */
 await import("./src/env.js");
+// import { createContentlayerPlugin } from "next-contentlayer"
+import { createContentlayerPlugin } from "next-contentlayer";
 
-/** @type {import("next").NextConfig} */
-const config = {};
+// import "./env.mjs"
 
-export default config;
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ["avatars.githubusercontent.com", "images.unsplash.com"],
+  },
+  experimental: {
+    // appDir: true,
+    serverComponentsExternalPackages: ["@prisma/client"],
+  },
+}
+
+const withContentlayer = createContentlayerPlugin({
+  // Additional Contentlayer config options
+});
+
+// export default withContentlayer(nextConfig)
+export default withContentlayer(nextConfig);
+

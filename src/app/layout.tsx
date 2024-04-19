@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 
 import { Inter } from "next/font/google";
-import NavBar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-    title: "Hy Blog",
+    title: "hytechblog",
     description: "A personal blog on my tech journey",
     icons: [{ rel: "icon", url: "/animated-fox-pixel.png" }],
 };
@@ -22,7 +22,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`font-sans ${inter.variable}`}>
-                <NavBar />
+                <Navbar />
                 {children}
             </body>
         </html>
