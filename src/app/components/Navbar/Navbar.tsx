@@ -27,11 +27,11 @@ const NavBar = () => {
                 link: "/posts/about",
             },
             {
-                icon: <Linkedin size={20} className="mx-2 text-primary-foreground hover:text-primary" />,
+                icon: <Linkedin size={20} className="mx-2 text-primary-foreground" />,
                 link: "https://www.linkedin.com/in/hy-h-40983b1b6"
             },
             {
-                icon: <LucideGithub size={20} className="mx-2 text-primary-foreground hover:text-primary" />,
+                icon: <LucideGithub size={20} className="mx-2 text-primary-foreground" />,
                 link: "https://www.github.com/hoxirious/"
             },
         ],
@@ -63,7 +63,7 @@ const NavBar = () => {
                             {item.icon}
                         </Link>
                     ))}
-                    <a href="/Hy_Huynh_Resume.pdf" download="Hy_Huynh_Resume" title="Resume"> <FileText size={20} className="mx-2 text-primary-foreground hover:text-primary" /></a>
+                    <a href="/Hy_Huynh_Resume.pdf" download="Hy_Huynh_Resume" title="Resume"> <FileText size={20} className="mx-2 text-primary-foreground" /></a>
                 </div>
             </div>
         </div>
