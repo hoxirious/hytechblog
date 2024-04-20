@@ -5,30 +5,27 @@ import Link from "next/link";
 import {
     Pagination,
     PaginationContent,
-    PaginationEllipsis,
     PaginationItem,
     PaginationLink,
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
-import { useEffect, useMemo, useState } from "react";
-import dynamic from 'next/dynamic';
+import { useEffect, useState } from "react";
 import useWindowDimensions from "@/components/hooks/useWindowDimension";
 
 const getMaxPostsPerPage = (height?: number, width?: number) => {
     if (!height || !width) {
-        console.log("No height or width")
         return 3;
     }
 
-    if (width < 840) {
+    if (width < 880) {
         return 2;
     }
-    if (width < 1024) {
+    if (width < 1340) {
         return 4;
     }
-    if (width < 1280) {
-        return 6;
+    if (width < 1600) {
+        return 6
     }
     return 12;
 }
@@ -49,7 +46,6 @@ export default function Posts() {
     }, [height, width, currentPage])
 
     const onPageNext = () => {
-        console.log("Next page")
         setCurrentPage((prev) => {
             if (prev + 1 > (allPosts.length / maxPostsPerPage) + 1) {
                 return prev;
@@ -58,7 +54,6 @@ export default function Posts() {
         })
     }
     const onPagePrevious = () => {
-        console.log("Next page")
         setCurrentPage((prev) => {
             if (prev - 1 == 0) {
                 return prev;
@@ -69,7 +64,7 @@ export default function Posts() {
     }
     return (
         <div className="cover h-screen w-full relative">
-            <section className="flex flex-wrap justify-center gap-8 w-4/5 mx-auto md:justify-start">
+            <section className="flex flex-wrap justify-center gap-8 w-4/5 mx-auto">
                 {currentPosts.map((post: Post, index: number) => (
                     <Link href={post.url} key={index} >
                         <ArticleCard key={index} article={post} />
@@ -94,8 +89,6 @@ export default function Posts() {
         </div>
 
     )
-
-
 }
 
 

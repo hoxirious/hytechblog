@@ -139,7 +139,7 @@
     }
 
     section {
-        @apply py-24 w-4/5 mx-auto;
+        @apply py-24 w-full lg:w-4/5 mx-auto;
     }
 
     .cover {

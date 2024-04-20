@@ -11,7 +11,7 @@ import { allPosts, Post } from "contentlayer/generated";
 
 export default function HomePage() {
 
-    const posts = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
+    const posts = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date))).slice(0, 6)
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-center text-white bg-gradient-to-b to-primary from-[#11222A] from-70%">
@@ -30,12 +30,14 @@ export default function HomePage() {
                             <a href="/Hy_Huynh_Resume.pdf" download="Hy_Huynh_Resume" title="Resume"> <FileText size={32} className="m-2 text-primary-foreground hover:text-primary" /></a>
                         </div>
                     </div>
-                    <iframe className="m-auto rounded-lg" src="https://www.youtube.com/embed/e0BQWxOaljU?enablejsapi=1" width="560" height="315" title="Hack The Change 2021 Demo" frameBorder="0" allowFullScreen />
+                    <iframe className="m-auto rounded-lg w-[300px] md:w-[560px] h-[200px] md:h-[315px]"
+                        src="https://www.youtube.com/embed/e0BQWxOaljU?enablejsapi=1"
+                        title="Hack The Change 2021 Demo" frameBorder="0" allowFullScreen />
                     <p className="absolute left-0 bottom-0 italic text-sm text-gray-500">https://imgur.com/gallery/8a66g</p>
                 </section>
                 <section className="py-8 flex flex-col justify-center">
-                    <h2 className="text-2xl font-bold">[Recents]</h2>
-                    <div className="grid mt-4 grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <h2 className="text-2xl font-bold mx-auto">[Recents]</h2>
+                    <div className="grid mt-4 grid-cols-1 justify-items-center  md:grid-cols-2 xl:grid-cols-3 gap-6">
                         {posts.map((article: Post, index: number) => (
                             <Link href={article.url} key={index} >
                                 <ArticleCard key={index} article={article} />

@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar/Navbar";
 import { Linkedin, LucideGithub } from "lucide-react";
 import LogoLink from "./components/Logo/LogoLink";
+import Link from "next/link";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -26,12 +27,14 @@ export default function RootLayout({
             <body className={`font-sans ${inter.variable} flex flex-col h-screen`}>
                 <Navbar />
                 <div className="grow">
-                {children}
+                    {children}
                 </div>
                 <section className="footer">
                     <div className="w-4/5 flex mx-auto">
                         <div className="mr-auto text-white flex gap-4 items-center">
-                            <span className="text-sm">Tags</span>
+                            <Link href="/">
+                                <span className="text-sm">Home</span>
+                            </Link>
                             <LogoLink icon={<Linkedin size={24} />} link="https://www.linkedin.com/in/hy-h-40983b1b6/" />
                             <LogoLink icon={<LucideGithub size={24} />} link="https://www.github.com/hoxirious" />
                         </div>
