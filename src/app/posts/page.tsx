@@ -63,7 +63,7 @@ export default function Posts() {
         )
     }
     return (
-        <div className="cover h-screen w-full relative">
+        <div className="cover h-full w-full relative">
             <section className="flex flex-wrap justify-center gap-8 w-4/5 mx-auto">
                 {currentPosts.map((post: Post, index: number) => (
                     <Link href={post.url} key={index} >
@@ -73,13 +73,13 @@ export default function Posts() {
                 ))}
             </section>
             <p className="absolute left-0 bottom-0 italic text-sm text-gray-500">https://imgur.com/gallery/8a66g</p>
-            <Pagination className="absolute bottom-20">
-                <PaginationContent>
+            <Pagination className="absolute top-10">
+                <PaginationContent className="flex gap-4">
                     <PaginationItem>
                         <PaginationPrevious className="text-white" onClick={onPagePrevious} />
                     </PaginationItem>
                     <PaginationItem>
-                        <PaginationLink className="text-white">{currentPage}</PaginationLink>
+                        <span className="text-white">{currentPage}</span>
                     </PaginationItem>
                     <PaginationItem>
                         <PaginationNext className="text-white" onClick={onPageNext} />

@@ -21,7 +21,7 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
     if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
     return (
-        <div className="cover w-full h-screen cover">
+        <div className="cover w-full h-full cover relative">
             <div className="grid grid-cols-1 h-full px-2 gap-4 md:grid-cols-5 md:px-12 ">
                 <article className="mx-auto py-8 min-h-3/4 w-4/5 col-span-5 lg:col-span-4 flex flex-col">
                     <div className="mb-8 text-center">
