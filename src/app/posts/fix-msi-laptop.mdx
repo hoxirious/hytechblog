@@ -1,0 +1,83 @@
+---
+title: My WiFi Connected but Has No Internet
+date: 2024-07-26
+readTime: 10
+tags:
+  - linux
+  - network
+---
+
+## Context
+
+On a beautiful day, I tried to connect to my new homelab from my Linux laptop, only to find I had no internet access. My WiFi was connected, but no internet traffic was going through. My first thought was that my four-year-old MSI laptop, which has a history of WiFi issues, was acting up again. Previously, a simple hardware reset—removing and reinserting the WiFi card—had resolved the issue. However, this time, even two blows didn’t work. Rebooting took an unusually long time, and it took forever (about 10 minutes) to get from the welcome screen to the login screen. Clearly, something was seriously wrong.
+
+## How I Fixed It
+
+### Issue Overview
+
+1. `sudo` commands were taking forever and returned the error `hostname does not exist`.
+2. WiFi was connected but had no internet access.
+3. The Ubuntu welcome screen took minutes to load.
+4. GNOME took 10 minutes to initialize after login.
+5. My laptop does not have an ethernet port.
+
+#### Forever `sudo`
+
+Add your hostname to `/etc/hostname`:
+
+```bash
+sudo nvim /etc/hostname
+```
+
+#### WiFi Connected but No Internet
+
+I tried the following steps:
+
+1. Forgetting all the WiFi access points and reconnecting.
+2. Resetting the network driver:
+
+```bash
+sudo systemctl restart NetworkManager
+```
+
+3. Resetting the firewall:
+
+```bash
+sudo ufw reload
+```
+
+4. Disabling the WiFi verification step (this removed the question mark on the WiFi icon).
+
+Unfortunately, none of these steps worked. After hours of troubleshooting, I realized it could be a DNS issue. I added Google DNS:
+
+```bash
+sudo nvim /etc/resolv.conf
+
+nameserver 8.8.8.8
+
+sudo systemctl restart NetworkManager
+```
+
+With this, my WiFi was fixed! I then reinstalled `resolvconf` for automatic DNS configuration.
+
+#### Ubuntu Welcome Screen Takes Minutes to Load
+
+This issue was convenient to debug. On the welcome screen, pressing any button toggles the journal log mode. From the logs, I found that the `systemd-networkd-wait-online` driver was causing the delay. I disabled and masked it:
+
+```bash
+sudo systemctl disable systemd-networkd-wait-online
+
+sudo systemctl mask systemd-networkd-wait-online
+```
+
+#### GNOME Takes 10 Minutes to Initialize After Login
+
+This issue was caused by the missing DNS. Once the WiFi issue was fixed, this problem disappeared.
+
+### What I Learned
+
+I learned the critical role of the internet in software functionality. Without it, systems can become unsynchronized, outdated, and—most importantly—there's no access to Stack Overflow! I gained practical experience in networking, a subject I had previously only studied theoretically. Additionally, I learned how to debug on Linux using `journalctl`, which logs all actions and errors.
+
+### Conclusion
+
+I managed to fix my laptop without losing any data. Every day, I grow a little more, and I cherish this journey despite the rough start after graduation. I will keep my head up and keep moving forward.
