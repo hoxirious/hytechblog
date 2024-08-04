@@ -1,0 +1,124 @@
+---
+title: Setting Up NextCloud
+date: 2024-08-04
+readTime: 3
+tags:
+    - network
+    - linux
+    - nextcloud
+---
+
+# Setup NextCloud
+
+## Context
+After reinstalling Ubuntu on my broken screen laptop, I decided to set up a local cloud that I can access from both my laptops and mobile devices. You might think, "Why bother when we have OneDrive or Google Drive?" Well, I'm trying to avoid sharing my personal information with "data-mining" corporations. Although it's hard to give up such conveniences, this is my first step toward maintaining my privacy.
+
+## Planning
+
+Before starting any project, I make sure it's well-planned, which sometimes leads to procrastination. Fortunately, this time I stayed focused and on track.
+
+I outlined some key requirements:
+
+1. The solution must be on-premise.
+2. It must be accessible only within the local network.
+3. It should be cross-device friendly.
+
+## Research
+
+After some research, I considered two promising approaches:
+
+1. Containerize a folder and map port 80 in the container to the designated port on the host.
+2. Use NextCloud.
+
+I chose NextCloud because it’s an open-source project with many available extensions like Calendar, Email, and Chat, which are very attractive. However, I kept the first approach in mind for future use.
+
+## Execution
+
+### Mount External Drive to Local System
+
+I have two drives:
+
+- /dev/sda WD 250GB SSD
+- /dev/sdb ST 1TB HDD
+
+Ubuntu is installed on /dev/sda, so I wanted to use my HDD as the storage drive for NextCloud.
+
+- First, list all partitions:
+
+```bash
+sudo lsblk -o model,name,size,fstype,label,mountpoint
+```
+
+Output:
+```
+...
+ST1000LM035-1RK172     sdb    931.5G
+├─sdb1     1M
+└─sdb2 931.5G ext4
+```
+
+- Create a mount point:
+```bash
+sudo mkdir -p /mnt/hddstorage
+```
+
+- Mount the partition:
+```bash
+sudo mount /dev/sdb2 /mnt/hddstorage
+```
+
+Here I encountered an issue:
+```
+mount: /mnt/sdb-hddstorage: wrong fs type, bad option, bad superblock on /dev/sdb2, missing codepage or helper program, or other error.
+dmesg: read kernel buffer failed: Operation not permitted
+```
+
+Since it indicated a permission problem, I switched to superuser and repeated the mounting step:
+```bash
+sudo su
+sudo mount /dev/sdb2 /mnt/hddstorage
+```
+
+To ensure the drive mounts on startup, add this command to Startup Applications, but it requires superuser permissions. To avoid hassle, use the Disks application:
+```
+Disks > Select your disk > Choose the partition > Click the Cog Icon > Edit Mount Options > Enter the path under Mount Point
+```
+
+### Build and Run NextCloud
+
+1. Install Docker:
+```bash
+sudo apt update && sudo apt install docker.io
+```
+
+2. Ensure Docker is active:
+```bash
+sudo systemctl status docker
+
+# if not active
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+3. Pull the NextCloud image:
+```bash
+sudo docker pull nextcloud
+```
+
+4. Run the NextCloud container:
+```bash
+sudo docker run -d -p 8080:80 -v /mnt/hddstorage:/var/www/html --name nextcloud nextcloud
+```
+
+> Replace `/mnt/hddstorage` with your mounted location
+
+5. Access NextCloud:
+Open your browser and go to `your-server-ip:8080`.
+
+## Conclusion
+
+Now you can enjoy all the features of NextCloud! I had a great time setting everything up and highly recommend giving it a try.
+
+## References:
+- [Accessing Other Drives on Ubuntu](https://askubuntu.com/questions/920992/how-do-i-access-other-drives)
+- [Mount Errors and Solutions](https://unix.stackexchange.com/questions/315063/mount-wrong-fs-type-bad-option-bad-superblock)
