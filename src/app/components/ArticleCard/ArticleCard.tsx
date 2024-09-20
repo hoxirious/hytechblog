@@ -9,7 +9,7 @@ export const ArticleCard = ({ article }: { article: Post }) => {
     return (
         <div className="rounded-lg flex flex-col gap-2 h-72 w-72 bg-white/[0.7]">
             <Image src={placeholder} alt={article.title} className="rounded-t-lg" />
-            <h3 className="text-lg font-bold mx-4">{article.title}</h3>
+            <h3 className="text-lg font-bold mx-4 truncate">{article.title}</h3>
             <div className="flex justify-start gap-2 mx-4">
                 <time dateTime={article.date}>
                     {format(parseISO(article.date), 'LLLL d, yyyy')}
