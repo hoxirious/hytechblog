@@ -1,0 +1,103 @@
+---
+# vi:ft=markdown
+# vi:wrap
+
+title: Setup C# on Neovim
+date: 2024-09-20
+readTime: 5
+tags:
+    - C#
+    - linux
+    - neovim
+---
+# Environment Setup
+
+Follow the instructions below to set up your environment.
+
+## Environment
+
+- **Operating System**: Ubuntu 22.04
+- **Neovim Version**: 0.10.0
+
+## Install .NET SDK
+
+Update the package list and install the .NET SDK:
+
+```bash
+sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
+```
+
+## Install ASP.NET Core Runtime
+
+Install the ASP.NET Core Runtime:
+
+```bash
+sudo apt-get update && sudo apt-get install -y aspnetcore-runtime-8.0
+```
+
+## Install Required Dependencies
+
+Ensure the following dependencies are installed:
+
+- ca-certificates
+- libc6
+- libgcc-s1
+- libgssapi-krb5-2
+- libicu70
+- liblttng-ust1
+- libssl3
+- libstdc++6
+- libunwind8
+- zlib1g
+
+## Resolving Missing SDK Path Error
+
+After setting up the environment, you might encounter this error when initializing a project:
+
+```bash
+.NET8 - MSB4236: The SDK 'Microsoft.NET.Sdk' specified could not be found
+```
+
+To resolve this, add the following line to your `.bashrc` to set the correct SDK path:
+
+```bash
+export MSBuildSDKsPath="/usr/share/dotnet/sdk/$(dotnet --version)/Sdks"
+```
+
+This should allow you to create .NET projects without issues.
+
+# Setting Up C# LSP for Neovim
+
+## Install LSP
+
+- Use Mason to install `omnisharp`.
+
+### Common Errors and Fixes:
+
+1. **Neovim LSP Error - Attempt to Index Local 'decoded' (a nil value):**
+   - Solutions:
+     1. Revert to the latest `CSharpDiagnosticWorkerWithAnalyzers.cs` at commit `b2e64c6`.
+        ```bash
+        git clone https://github.com/OmniSharp/omnisharp-roslyn
+        cd omnisharp-roslyn
+        git checkout b2e64c6 -- $(find . -name CSharpDiagnosticWorkerWithAnalyzers.cs)
+        dotnet build --configuration Release
+        ```
+     2. Upgrade Neovim to version 0.10.1 ([details here](https://github.com/neovim/neovim/pull/29196)).
+
+2. **Neovim LSP Cannot Navigate to Definitions in DLL References** ([known issue](https://github.com/OmniSharp/omnisharp-roslyn/issues/2577)):
+   - This is a known bug in `omnisharp`.
+   - Install the `Hoffs/omnisharp-extended-lsp.nvim` extension.
+   - Configure Omnisharp's handler in Mason-LSP to link to the extension's handler.
+
+# Conclusion
+
+Enjoy working with a fully-featured C# setup on Neovim!
+
+# References
+
+1. [Install .NET on Ubuntu](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?pivots=os-linux-ubuntu-2204&tabs=dotnet8)
+2. [Missing SDK Path Issue](https://github.com/dotnet/sdk/issues/23311)
+3. [OmniSharp Issue #2574](https://github.com/OmniSharp/omnisharp-roslyn/issues/2574#issuecomment-2246390939)
+4. [Neovim Upgrade](https://github.com/neovim/neovim/pull/29196)
+5. [OmniSharp Definition Navigation Bug](https://github.com/OmniSharp/omnisharp-roslyn/issues/2577)
