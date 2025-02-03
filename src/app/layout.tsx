@@ -30,7 +30,7 @@ export default function RootLayout({
                 <Analytics />
                 <SpeedInsights />
                 <Navbar />
-                <div className="flex flex-col grow">
+                <div className="flex flex-col h-[90vh]">
                     {children}
                 </div>
             </body>

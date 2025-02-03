@@ -27,7 +27,7 @@ const getMaxPostsPerPage = (height?: number, width?: number) => {
     if (width < 1600) {
         return 6
     }
-    return 12;
+    return 6;
 }
 
 export default function Posts() {
@@ -63,7 +63,7 @@ export default function Posts() {
         )
     }
     return (
-        <div className="flex grow cover h-full w-full relative">
+        <div className="flex flex-col grow cover h-full py-24 w-full relative">
             <section className="flex flex-wrap justify-center gap-8 w-4/5 mx-auto">
                 {currentPosts.map((post: Post, index: number) => (
                     <Link href={post.url} key={index} >
@@ -76,13 +76,13 @@ export default function Posts() {
             <Pagination className="absolute top-10">
                 <PaginationContent className="flex gap-4">
                     <PaginationItem>
-                        <PaginationPrevious className="text-white" onClick={onPagePrevious} />
+                        <PaginationPrevious className="text-white text-xl" onClick={onPagePrevious} />
                     </PaginationItem>
                     <PaginationItem>
-                        <span className="text-white">{currentPage}</span>
+                        <span className="text-white text-2xl">{currentPage}</span>
                     </PaginationItem>
                     <PaginationItem>
-                        <PaginationNext className="text-white" onClick={onPageNext} />
+                        <PaginationNext className="text-white text-xl" onClick={onPageNext} />
                     </PaginationItem>
                 </PaginationContent>
             </Pagination>

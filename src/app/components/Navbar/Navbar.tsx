@@ -29,11 +29,11 @@ const NavBar = () => {
                 link: "/posts/about",
             },
             {
-                icon: <Linkedin size={40} className="mx-2 text-primary-foreground hover:border-b-2 pb-2" />,
+                icon: <Linkedin size={50} className="mx-2 text-primary-foreground hover:border-b-2 p-2" />,
                 link: "https://www.linkedin.com/in/hy-h-40983b1b6"
             },
             {
-                icon: <LucideGithub size={40} className="mx-2 text-primary-foreground hover:border-b-2 pb-2" />,
+                icon: <LucideGithub size={50} className="mx-2 text-primary-foreground hover:border-b-2 p-2" />,
                 link: "https://www.github.com/hoxirious/"
             },
             ],
@@ -44,7 +44,7 @@ const NavBar = () => {
 
 
     return (
-        <div className="w-full bg-gradient-to-b to-[#64909E] from-primary navbar-container">
+        <div className="h-[10vh] w-full align-center bg-gradient-to-b to-[#64909E] from-primary navbar-container">
             <div className="navbar">
                 <div className="navbar-item navbar-left">
                     {navBarVariant.left.map((item, index) => (
@@ -59,7 +59,7 @@ const NavBar = () => {
                             {item.icon}
                         </Link>
                     ))}
-                    <a href="/Hy_Huynh_Resume.pdf" download="Hy_Huynh_Resume" title="Resume"> <FileText size={40} className="mx-2 text-primary-foreground pb-2 hover:border-b-2" /></a>
+                    <a href="/Hy_Huynh_Resume.pdf" download="Hy_Huynh_Resume" title="Resume"> <FileText size={50} className="mx-2 text-primary-foreground p-2 hover:border-b-2" /></a>
                 </div>
                 <div className="navbar-item navbar-right">
                     {navBarVariant.right.map((item, index) => (
