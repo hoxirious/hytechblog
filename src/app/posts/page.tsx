@@ -63,7 +63,7 @@ export default function Posts() {
         )
     }
     return (
-        <div className="cover h-full w-full relative">
+        <div className="flex grow cover h-full w-full relative">
             <section className="flex flex-wrap justify-center gap-8 w-4/5 mx-auto">
                 {currentPosts.map((post: Post, index: number) => (
                     <Link href={post.url} key={index} >

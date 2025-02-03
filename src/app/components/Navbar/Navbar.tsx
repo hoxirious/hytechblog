@@ -10,14 +10,16 @@ const NavBar = () => {
         right: { icon: JSX.Element; link: string }[];
     } = {
         left: [
-            {
-                icon: <NavbarItem text="hy" className="text-[#E6681D] text-xl font-bold italic underline" />,
-                link: "/",
-            }
         ],
-        middle: [],
-        right: [
-
+        middle: [
+            //{
+            //    icon: <NavbarItem text="hy" className="text-[#E6681D] text-4xl font-bold italic underline" />,
+            //    link: "/",
+            //},
+            {
+                icon: <NavbarItem text="Home" />,
+                link: "/",
+            },
             {
                 icon: <NavbarItem text="Articles" />,
                 link: "/posts",
@@ -27,21 +29,22 @@ const NavBar = () => {
                 link: "/posts/about",
             },
             {
-                icon: <Linkedin size={20} className="mx-2 text-primary-foreground" />,
+                icon: <Linkedin size={40} className="mx-2 text-primary-foreground hover:border-b-2 pb-2" />,
                 link: "https://www.linkedin.com/in/hy-h-40983b1b6"
             },
             {
-                icon: <LucideGithub size={20} className="mx-2 text-primary-foreground" />,
+                icon: <LucideGithub size={40} className="mx-2 text-primary-foreground hover:border-b-2 pb-2" />,
                 link: "https://www.github.com/hoxirious/"
             },
-        ],
+            ],
+        right: [],
     }
 
     const navBarVariant = homeNavBarList;
 
 
     return (
-        <div className=" bg-gradient-to-b to-[#64909E] from-primary navbar-container">
+        <div className="w-full bg-gradient-to-b to-[#64909E] from-primary navbar-container">
             <div className="navbar">
                 <div className="navbar-item navbar-left">
                     {navBarVariant.left.map((item, index) => (
@@ -56,6 +59,7 @@ const NavBar = () => {
                             {item.icon}
                         </Link>
                     ))}
+                    <a href="/Hy_Huynh_Resume.pdf" download="Hy_Huynh_Resume" title="Resume"> <FileText size={40} className="mx-2 text-primary-foreground pb-2 hover:border-b-2" /></a>
                 </div>
                 <div className="navbar-item navbar-right">
                     {navBarVariant.right.map((item, index) => (
@@ -63,7 +67,6 @@ const NavBar = () => {
                             {item.icon}
                         </Link>
                     ))}
-                    <a href="/Hy_Huynh_Resume.pdf" download="Hy_Huynh_Resume" title="Resume"> <FileText size={20} className="mx-2 text-primary-foreground" /></a>
                 </div>
             </div>
         </div>
