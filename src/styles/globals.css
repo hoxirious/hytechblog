@@ -139,7 +139,7 @@
     }
 
     section {
-        @apply py-24 w-full lg:w-4/5 mx-auto;
+        @apply w-full lg:w-4/5 mx-auto;
     }
 
     .cover {
@@ -147,9 +147,9 @@
         @apply bg-cover w-full;
     }
 
-    .footer {
-        background-image: url('../../public/backyard.gif');
-        @apply bg-cover w-full py-2;
-        background-position: bottom;
-    }
+    /*.footer {*/
+    /*    background-image: url('../../public/backyard.gif');*/
+    /*    @apply bg-cover w-full py-2;*/
+    /*    background-position: bottom;*/
+    /*}*/
 }

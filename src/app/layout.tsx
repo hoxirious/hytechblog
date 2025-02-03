@@ -26,27 +26,13 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={`font-sans ${inter.variable} flex flex-col h-screen`}>
+            <body className={`font-sans ${inter.variable} flex flex-col h-full`}>
                 <Analytics />
                 <SpeedInsights />
                 <Navbar />
-                <div className="grow">
+                <div className="flex flex-col h-[90vh]">
                     {children}
                 </div>
-                <section className="footer">
-                    <div className="w-4/5 flex mx-auto">
-                        <div className="mr-auto text-white flex gap-4 items-center">
-                            <Link href="/">
-                                <NavbarItem text="Home" />
-                            </Link>
-                            <LogoLink icon={<Linkedin size={24} />} link="https://www.linkedin.com/in/hy-h-40983b1b6/" />
-                            <LogoLink icon={<LucideGithub size={24} />} link="https://www.github.com/hoxirious" />
-                        </div>
-                        <div className="ml-auto text-white my-auto">
-                            <span className="text-sm">@2001 Vietnam</span>
-                        </div>
-                    </div>
-                </section>
             </body>
         </html>
     );

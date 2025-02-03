@@ -30,7 +30,7 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
                         </time>
                         <h1 className="text-3xl font-bold">{post.title}</h1>
                     </div>
-                    <div className="max-w-full prose dark:prose-invert h-full bg-gray-300 bg-opacity-90 rounded-lg p-12 overflow-y-auto" dangerouslySetInnerHTML={{ __html: post.body.html }} />
+                    <div className="max-w-full prose dark:prose-invert h-[42rem] bg-gray-300 bg-opacity-90 rounded-lg p-12 overflow-y-auto" dangerouslySetInnerHTML={{ __html: post.body.html }} />
                 </article>
                 <aside className="hidden mt-32 sticky top-8 w-full h-fit pt-8 pb-12 col-span-1 bg-primary/[0.8] rounded-lg p-4 lg:block">
                     <h2 className="text-xl font-bold text-white mx-auto">Recent Posts</h2>
